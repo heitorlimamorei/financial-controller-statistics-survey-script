@@ -1,7 +1,7 @@
 import axios from "axios";
 import fs from "fs";
 
-interface IFeedback {
+export interface IFeedback {
   id: string;
   userId: string;
   sheetId: string;
@@ -15,14 +15,14 @@ interface IFeedback {
 }
 
 // Function that create a file with the JSON data.
-function createJsonFile<T>(ids: T[], filename: string): void {
+export function createJsonFile<T>(ids: T[], filename: string): void {
   const data = JSON.stringify(ids);
   fs.writeFileSync(filename, data);
   console.log(`Arquivo ${filename} criado com sucesso!`);
 }
 
 // Function that reads the JSON and parse it into an JS object
-async function readJsonFile(filePath: string): Promise<any> {
+export async function readJsonFile(filePath: string): Promise<any> {
   try {
     const data = await fs.promises.readFile(filePath, "utf8");
     return JSON.parse(data);
